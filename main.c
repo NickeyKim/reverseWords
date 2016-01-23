@@ -10,6 +10,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
+#include <wchar.h>
+#include <locale.h>
 
 bool reverseWords(char str[])
 {
@@ -46,11 +48,50 @@ bool reverseWords(char str[])
     free(buffer);
     return true;
 }
+void wcReverseString (wchar_t str[], int start, int end )
+{
+    wchar_t temp;
+    while (start < end){
+        
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+void wcReverseWords(wchar_t str[])
+{
+    int start, end = 0, length;
+    length = (int)wcslen(str);
+    //Reverse whole string
+    wcReverseString (str, start, length -1 );
+    while ( end < length ){
+        if(str[end] != L' ')
+        {
+            start = end;
+            while (str[end] != L' ' && end <length){
+                end++;
+            }
+            end--;
+            wcReverseString(str, start, end );
+        }
+        end++;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
+   
     char newstr[] = "piglet quantum";
     printf("old: %s\n", newstr);
     reverseWords(newstr);
     printf("new: %s\n", newstr);
+    wchar_t wchar[] = L"피그렛 퀀텀";
+    wcReverseWords(wchar);
+
+    wprintf(L"new: %s\n", wchar);
+
+    
     return 0;
 }
