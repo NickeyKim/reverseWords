@@ -34,7 +34,7 @@ bool reverseWords(char str[])
             wordEnd = tokenReadPos;
             while ( tokenReadPos >= 0 && str[tokenReadPos] != ' '){
                 tokenReadPos--;
-            }//tokenReadPos is at the space which infront of the word
+            }//tokenReadPos is at the space which is in front of the word
             wordReadPos = tokenReadPos +1;
             while (wordReadPos <= wordEnd){
                 buffer[writePos] = str[wordReadPos];
@@ -87,10 +87,7 @@ int main(int argc, const char * argv[]) {
     printf("old: %s\n", newstr);
     reverseWords(newstr);
     printf("new: %s\n", newstr);
-    wchar_t wchar[] = L"피그렛 퀀텀";
-    wcReverseWords(wchar);
 
-    wprintf(L"new: %s\n", wchar);
 
     
     return 0;
